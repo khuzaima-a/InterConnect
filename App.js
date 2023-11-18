@@ -9,7 +9,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <ResetPassword />
+      <Signup />
+      {/* <ResetPassword /> */}
       {/* <ForgotPassword /> */}
       {/* <Login /> */}
     </SafeAreaView>

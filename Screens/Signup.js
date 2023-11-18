@@ -13,6 +13,10 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
 
   const theme = {
     ...DefaultTheme,
@@ -22,11 +26,33 @@ const Signup = () => {
     },
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSignup = () => {
-    setName("");
-    setEmail("");
-    setPassword("");
-    Keyboard.dismiss();
+    setNameError(false);
+    setEmailError(false);
+    setPasswordError(false);
+
+    if (name && email && password && validateEmail(email)) {
+      setName("");
+      setEmail("");
+      setPassword("");
+      Keyboard.dismiss();
+      return;
+    }
+
+    if(!name) {
+      setNameError(true)
+    }
+    if(!email || !validateEmail(email)) {
+      setEmailError(true)
+    }
+    if(!password) {
+      setPasswordError(true)
+    }
   };
 
   const handlePressOutside = () => {
@@ -46,9 +72,10 @@ const Signup = () => {
             label="Name"
             value={name}
             onChangeText={setName}
-            outlineColor="rgba(50, 50, 50, 0.15)"
-            activeOutlineColor="#1185BA"
+            outlineColor={nameError ? "red" : "rgba(50, 50, 50, 0.15)"}
+            activeOutlineColor={nameError ? "red" : "#1185BA"}
             theme={theme}
+            required
           />
           <TextInput
             style={styles.input}
@@ -56,9 +83,10 @@ const Signup = () => {
             label="Email"
             value={email}
             onChangeText={setEmail}
-            outlineColor="rgba(50, 50, 50, 0.15)"
-            activeOutlineColor="#1185BA"
+            outlineColor={emailError ? "red" : "rgba(50, 50, 50, 0.15)"}
+            activeOutlineColor={emailError ? "red" : "#1185BA"}
             theme={theme}
+            keyboardType="email-address"
           />
           <TextInput
             style={styles.input}
@@ -67,9 +95,10 @@ const Signup = () => {
             value={password}
             onChangeText={setPassword}
             secureTextEntry
-            outlineColor="rgba(50, 50, 50, 0.15)"
-            activeOutlineColor="#1185BA"
+            outlineColor={passwordError ? "red" : "rgba(50, 50, 50, 0.15)"}
+            activeOutlineColor={passwordError ? "red" : "#1185BA"}
             theme={theme}
+
           />
           <Pressable
             android_ripple={{ color: "#519fc2" }}
