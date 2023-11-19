@@ -36,7 +36,7 @@ const Signup = () => {
     setEmailError(false);
     setPasswordError(false);
 
-    if (name && email && password && validateEmail(email)) {
+    if (name && email && password && validateEmail(email) & password.length >= 5) {
       setName("");
       setEmail("");
       setPassword("");
@@ -50,8 +50,8 @@ const Signup = () => {
     if(!email || !validateEmail(email)) {
       setEmailError(true)
     }
-    if(!password) {
-      setPasswordError(true)
+    if (!password || password.length < 5) {
+      setPasswordError(true);
     }
   };
 
