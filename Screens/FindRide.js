@@ -1,15 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
-  Text,
   Image,
-  Pressable,
-  Keyboard,
   StyleSheet,
-  TouchableWithoutFeedback,
   Dimensions,
 } from "react-native";
-import { TextInput, DefaultTheme } from "react-native-paper";
 import SearchCard from "../Components/SearchCard";
 
 const FindRide = () => {

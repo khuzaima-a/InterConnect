@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     fontSize: 16,
     paddingVertical: 16,
+    width: "90%",
   },
   line: {
     backgroundColor: "rgba(0, 0, 0, 0.2)",

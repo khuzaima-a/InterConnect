@@ -5,7 +5,6 @@ import {
   Pressable,
   Keyboard,
   StyleSheet,
-  TouchableWithoutFeedback,
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
 
@@ -55,12 +54,7 @@ const Signup = () => {
     }
   };
 
-  const handlePressOutside = () => {
-    Keyboard.dismiss();
-  };
-
   return (
-    <TouchableWithoutFeedback onPress={handlePressOutside}>
       <View style={styles.signup}>
         <View style={styles.ellipse}></View>
         <Text style={styles.heading}>Create{"\n"}Account</Text>
@@ -115,7 +109,6 @@ const Signup = () => {
           </Pressable>
         </View>
       </View>
-    </TouchableWithoutFeedback>
   );
 };
 

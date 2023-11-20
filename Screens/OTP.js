@@ -1,15 +1,12 @@
 import OTPTextInput from "react-native-otp-textinput";
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, Pressable, Keyboard,TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { View, Text, Pressable, Keyboard, StyleSheet } from 'react-native';
 
 const OTP = () => {
           const [otp, setOTP] =useState("") 
           const [timer, setTimer] = useState(60);
           const [timerActive, setTimerActive] = useState(true);
           const otpInput = useRef(null);
-          const handlePressOutside = () => {
-            Keyboard.dismiss();
-          };
 
            const handleSubmit = () => {
              console.log("OTP submitted:", otp);
@@ -42,7 +39,6 @@ const OTP = () => {
              value < 10 ? `0${value}` : `${value}`;
 
           return (
-            <TouchableWithoutFeedback onPress={handlePressOutside}>
               <View style={styles.container}>
                 <View style={styles.innerContainer}>
                   <Text style={styles.heading}>OTP{"\n"}Verification</Text>
@@ -91,7 +87,6 @@ const OTP = () => {
                   </Pressable>
                 </View>
               </View>
-            </TouchableWithoutFeedback>
           );
 };
 

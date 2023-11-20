@@ -1,0 +1,118 @@
+const Rides = [
+  {
+    id: 1,
+    source: "Lahore, Pk",
+    destination: "Islamabad, Pk",
+    date: "11/21",
+    departureTime: "12:00",
+    arrivalTime: "16:00",
+    vehicle: {
+      name: "Honda Civic",
+      color: "white",
+      type: "Car",
+      seats: 3,
+    },
+    driver: {
+      name: "Hanan",
+      image: null,
+    },
+    fare: 1900 + " PKR",
+  },
+  {
+    id: 2,
+    source: "Lahore, Pk",
+    destination: "Sheikhupura, Pk",
+    date: "11/21",
+    departureTime: "09:00",
+    arrivalTime: "10:00",
+    vehicle: {
+      name: "Honda 70",
+      color: "red",
+      type: "Bike",
+      seats: 1,
+    },
+    driver: {
+      name: "Burhan",
+      image: null,
+    },
+    fare: 300 + " PKR",
+  },
+  {
+    id: 3,
+    source: "Lahore, Pk",
+    destination: "Islamabad, Pk",
+    date: "11/21",
+    departureTime: "12:00",
+    arrivalTime: "16:00",
+    vehicle: {
+      name: "Honda Civic",
+      color: "white",
+      type: "Car",
+      seats: 3,
+    },
+    driver: {
+      name: "Hanan",
+      image: null,
+    },
+    fare: 1900 + " PKR",
+  },
+  {
+    id: 4,
+    source: "Lahore, Pk",
+    destination: "Islamabad, Pk",
+    date: "11/21",
+    departureTime: "12:00",
+    arrivalTime: "16:00",
+    vehicle: {
+      name: "Honda Civic",
+      color: "white",
+      type: "Car",
+      seats: 3,
+    },
+    driver: {
+      name: "Hanan",
+      image: null,
+    },
+    fare: 1900 + " PKR",
+  },
+  {
+    id: 5,
+    source: "Lahore, Pk",
+    destination: "Islamabad, Pk",
+    date: "11/21",
+    departureTime: "12:00",
+    arrivalTime: "16:00",
+    vehicle: {
+      name: "Honda Civic",
+      color: "white",
+      type: "Car",
+      seats: 3,
+    },
+    driver: {
+      name: "Hanan",
+      image: null,
+    },
+    fare: 1900 + " PKR",
+  },
+  {
+    id: 6,
+    source: "Lahore, Pk",
+    destination: "Islamabad, Pk",
+    date: "11/21",
+    departureTime: "12:00",
+    arrivalTime: "16:00",
+    vehicle: {
+      name: "Honda Civic",
+      color: "white",
+      type: "Car",
+      seats: 3,
+    },
+    driver: {
+      name: "Hanan",
+      image: null,
+    },
+    fare: 1900 + " PKR",
+  },
+];
+
+export default Rides;

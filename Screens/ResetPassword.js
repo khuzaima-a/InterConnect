@@ -6,7 +6,6 @@ import {
   Keyboard,
   Image,
   StyleSheet,
-  TouchableWithoutFeedback,
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
 
@@ -28,57 +27,50 @@ const ResetPassword = () => {
     Keyboard.dismiss();
   };
 
-  const handlePressOutside = () => {
-    Keyboard.dismiss();
-  };
-
   return (
-      <TouchableWithoutFeedback onPress={handlePressOutside}>
-        <View style={styles.container}>
-          <Image
-            style={styles.image}
-            source={require("../assets/ResetPassword.png")}
+      <View style={styles.container}>
+        <Image
+          style={styles.image}
+          source={require("../assets/ResetPassword.png")}
+        />
+        <Text style={styles.heading}>Set Your Password</Text>
+        <Text style={styles.description}>
+          In order to keep your account safe you need to create a strong
+          password
+        </Text>
+        <View style={styles.form}>
+          <TextInput
+            style={styles.input}
+            mode="outlined"
+            label="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+            outlineColor="rgba(50, 50, 50, 0.15)"
+            activeOutlineColor="#1185BA"
+            theme={theme}
           />
-          <Text style={styles.heading}>Set Your Password</Text>
-          <Text style={styles.description}>
-            In order to keep your account safe you need to create a strong
-            password
-          </Text>
-          <View style={styles.form}>
-            <TextInput
-              style={styles.input}
-              mode="outlined"
-              label="Password"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-              outlineColor="rgba(50, 50, 50, 0.15)"
-              activeOutlineColor="#1185BA"
-              theme={theme}
-            />
 
-            <TextInput
-              style={styles.input}
-              mode="outlined"
-              label="Confirm Password"
-              value={confirmPassword}
-              onChangeText={setConfirmPassword}
-              secureTextEntry
-              outlineColor="rgba(50, 50, 50, 0.15)"
-              activeOutlineColor="#1185BA"
-              theme={theme}
-            />
+          <TextInput
+            style={styles.input}
+            mode="outlined"
+            label="Confirm Password"
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            secureTextEntry
+            outlineColor="rgba(50, 50, 50, 0.15)"
+            activeOutlineColor="#1185BA"
+            theme={theme}
+          />
 
-            <Pressable
-              android_ripple={{ color: "#519fc2" }}
-              onPress={handleSubmit}
-              style={styles.buttonContainer}>
-              <Text style={styles.button}> Submit</Text>
-            </Pressable>
-          </View>
+          <Pressable
+            android_ripple={{ color: "#519fc2" }}
+            onPress={handleSubmit}
+            style={styles.buttonContainer}>
+            <Text style={styles.button}> Submit</Text>
+          </Pressable>
         </View>
-      </TouchableWithoutFeedback>
-    
+      </View>
   );
 };
 

@@ -1,55 +1,69 @@
-import React, { useState } from 'react';
-import { View, Text, Pressable, Keyboard ,TouchableWithoutFeedback , StyleSheet} from 'react-native';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  Pressable,
+  Keyboard,
+  StyleSheet,
+} from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
 
 const ForgotPassword = () => {
-          const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(false);
 
-            const theme = {
-              ...DefaultTheme,
-              colors: {
-                ...DefaultTheme.colors,
-                background: "rgb(243, 243, 243)",
-              },
-            };
+  const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: "rgb(243, 243, 243)",
+    },
+  };
 
-          const handleSendCode = () => {
-                    console.log('Sending OTP to:', email);
-                    Keyboard.dismiss();
-          };
+   const validateEmail = (email) => {
+     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     return emailRegex.test(email);
+   };
 
-          const handlePressOutside = () => {
-            Keyboard.dismiss();
-          };
+  const handleSendCode = () => {
+    setEmailError(false);
 
-          return (
-            <TouchableWithoutFeedback onPress={handlePressOutside}>
-              <View style={styles.container}>
-                <View style={styles.innerContainer}>
-                  <Text style={styles.heading}>Forgot{"\n"}Password?</Text>
-                  <Text style={styles.description}>
-                    Don't worry! It happens. Please enter your email, we will
-                    send the OTP on this email.
-                  </Text>
-                  <TextInput
-                    mode="outlined"
-                    label="Enter your email"
-                    value={email}
-                    onChangeText={setEmail}
-                    outlineColor="rgba(50, 50, 50, 0.15)"
-                    activeOutlineColor="#1185BA"
-                    theme={theme}
-                  />
-                  <Pressable
-                    android_ripple={{ color: "#519fc2" }}
-                    onPress={handleSendCode}
-                    style={styles.buttonContainer}>
-                    <Text style={styles.button}> Login</Text>
-                  </Pressable>
-                </View>
-              </View>
-            </TouchableWithoutFeedback>
-          );
+    if (email && validateEmail(email)) {
+      console.log("Sending OTP to:", email);
+      setEmail("");
+      Keyboard.dismiss();
+    } else {
+      setEmailError(true);
+    }
+  };
+
+  return (
+      <View style={styles.container}>
+        <View style={styles.innerContainer}>
+          <Text style={styles.heading}>Forgot{"\n"}Password?</Text>
+          <Text style={styles.description}>
+            Don't worry! It happens. Please enter your email, we will send the
+            OTP on this email.
+          </Text>
+          <TextInput
+            mode="outlined"
+            label="Enter your email"
+            value={email}
+            keyboardType="email-address"
+            onChangeText={setEmail}
+            outlineColor={emailError ? "red" : "rgba(50, 50, 50, 0.15)"}
+            activeOutlineColor={emailError ? "red" : "#1185BA"}
+            theme={theme}
+          />
+          <Pressable
+            android_ripple={{ color: "#519fc2" }}
+            onPress={handleSendCode}
+            style={styles.buttonContainer}>
+            <Text style={styles.button}> Login</Text>
+          </Pressable>
+        </View>
+      </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -59,8 +73,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   innerContainer: {
-          flex: 1,
-          marginTop: 170,
+    flex: 1,
+    marginTop: 170,
   },
   heading: {
     fontSize: 40,
@@ -89,6 +103,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
   },
-})
+});
 
 export default ForgotPassword;

@@ -5,13 +5,14 @@ import {
   Pressable,
   Keyboard,
   StyleSheet,
-  TouchableWithoutFeedback,
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+   const [emailError, setEmailError] = useState(false);
+   const [passwordError, setPasswordError] = useState(false);
 
   const theme = {
     ...DefaultTheme,
@@ -21,18 +22,32 @@ const Login = () => {
     },
   };
 
+    const validateEmail = (email) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    };
+
   const handleLogin = () => {
-    setEmail("");
-    setPassword("");
-    Keyboard.dismiss();
+    setEmailError(false);
+    setPasswordError(false);
+
+ if (email && password && validateEmail(email) & password.length >= 5) {
+      setEmail("");
+      setPassword("");
+      Keyboard.dismiss();
+      return;
+    }
+
+    if (!email || !validateEmail(email)) {
+      setEmailError(true);
+    }
+    if (!password || password.length < 5) {
+      setPasswordError(true);
+    }
   };
 
-  const handlePressOutside = () => {
-    Keyboard.dismiss();
-  };
 
   return (
-    <TouchableWithoutFeedback onPress={handlePressOutside}>
       <View style={styles.signup}>
         <View style={styles.ellipse}></View>
         <Text style={styles.heading}>Welcome{"\n"}Back</Text>
@@ -43,9 +58,10 @@ const Login = () => {
             mode="outlined"
             label="Email"
             value={email}
+            keyboardType="email-address"
             onChangeText={setEmail}
-            outlineColor="rgba(50, 50, 50, 0.15)"
-            activeOutlineColor="#1185BA"
+            outlineColor={emailError ? "red" : "rgba(50, 50, 50, 0.15)"}
+            activeOutlineColor={emailError ? "red" : "#1185BA"}
             theme={theme}
           />
           <TextInput
@@ -55,13 +71,13 @@ const Login = () => {
             value={password}
             onChangeText={setPassword}
             secureTextEntry
-            outlineColor="rgba(50, 50, 50, 0.15)"
-            activeOutlineColor="#1185BA"
+            outlineColor={passwordError ? "red" : "rgba(50, 50, 50, 0.15)"}
+            activeOutlineColor={passwordError ? "red" : "#1185BA"}
             theme={theme}
           />
 
           <Pressable>
-                    <Text style={styles.forgotten}>Forgotten password?</Text>
+            <Text style={styles.forgotten}>Forgotten password?</Text>
           </Pressable>
 
           <Pressable
@@ -79,7 +95,6 @@ const Login = () => {
           </Pressable>
         </View>
       </View>
-    </TouchableWithoutFeedback>
   );
 };
 
