@@ -6,11 +6,13 @@ import OTP from "./Screens/OTP";
 import ResetPassword from './Screens/ResetPassword';
 import Login from './Screens/Login';
 import FindRide from './Screens/FindRide';
+import TabBar from './Components/TabBar';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <FindRide />
+      <TabBar />
     </SafeAreaView>
   );
 }
