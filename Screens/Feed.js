@@ -3,11 +3,16 @@ import Tracker from "../Components/Tracker";
 import RideOptions from "../Components/RideOptions";
 import RideCard from "../Components/RideCard";
 import Rides from "../Rides";
-import { View, FlatList, TouchableWithoutFeedback, TouchableView } from "react-native";
+import { View, FlatList, Pressable } from "react-native";
+import {
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 const Feed = () => {
   const [selected, setSelected] = useState("All");
   const [vehicles, setVehicles] = useState({});
+
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     setVehicles({
@@ -19,33 +24,40 @@ const Feed = () => {
 
 
   return (
-      <View
-        style={{ width: "100%", flex: 1, marginVertical: 16, alignItems: "center" }}>
-        <Tracker
-          source="Lahore, Pk"
-          destination="Islamabad, Pk"
-          passengers={1}
-          date="11/21"
-        />
-        <RideOptions
-          selected={selected}
-          setSelected={setSelected}
-          vehicles={vehicles}
-        />
+    <View
+      style={{
+        width: "100%",
+        flex: 1,
+        marginTop: 16,
+        alignItems: "center",
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+        paddingLeft: insets.left,
+        paddingRight: insets.right,
+      }}>
+      <Tracker
+        source="Lahore, Pk"
+        destination="Islamabad, Pk"
+        passengers={1}
+        date="11/21"
+      />
+      <RideOptions
+        selected={selected}
+        setSelected={setSelected}
+        vehicles={vehicles}
+      />
 
-        <FlatList
-          style={{ width: "100%" }}
-          data={
-            selected === "All"
-              ? Rides
-              : Rides.filter((ride) => ride.vehicle.type === selected)
-          }
-          renderItem={({ item }) => (
-            <RideCard key={item.id} RideDetails={item} />
-          )}
-          keyExtractor={(item) => item.id.toString()}
-        />
-      </View>
+      <FlatList
+        style={{ width: "100%" }}
+        data={
+          selected === "All"
+            ? Rides
+            : Rides.filter((ride) => ride.vehicle.type === selected)
+        }
+        renderItem={({ item }) => <RideCard key={item.id} RideInfo={item} />}
+        keyExtractor={(item) => item.id.toString()}
+      />
+    </View>
   );
 };
 

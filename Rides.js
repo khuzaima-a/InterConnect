@@ -8,7 +8,7 @@ const Rides = [
     arrivalTime: "16:00",
     vehicle: {
       name: "Honda Civic",
-      color: "white",
+      color: "White",
       type: "Car",
       seats: 3,
     },
@@ -27,7 +27,7 @@ const Rides = [
     arrivalTime: "10:00",
     vehicle: {
       name: "Honda 70",
-      color: "red",
+      color: "Red",
       type: "Bike",
       seats: 1,
     },
@@ -46,7 +46,7 @@ const Rides = [
     arrivalTime: "16:00",
     vehicle: {
       name: "Honda Civic",
-      color: "white",
+      color: "White",
       type: "Car",
       seats: 3,
     },
@@ -65,7 +65,7 @@ const Rides = [
     arrivalTime: "16:00",
     vehicle: {
       name: "Honda Civic",
-      color: "white",
+      color: "White",
       type: "Car",
       seats: 3,
     },
@@ -84,7 +84,7 @@ const Rides = [
     arrivalTime: "16:00",
     vehicle: {
       name: "Honda Civic",
-      color: "white",
+      color: "White",
       type: "Car",
       seats: 3,
     },
@@ -103,7 +103,7 @@ const Rides = [
     arrivalTime: "16:00",
     vehicle: {
       name: "Honda Civic",
-      color: "white",
+      color: "White",
       type: "Car",
       seats: 3,
     },
