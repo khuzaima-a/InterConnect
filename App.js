@@ -14,6 +14,7 @@ import FindRide from './Screens/FindRide';
 import TabBar from './Components/TabBar';
 import Feed from "./Screens/Feed";
 import RideDetails from './Screens/RideDetails';
+import Profile from './Screens/Profile';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -26,10 +27,11 @@ const handlePressOutside = () => {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Feed"
+          initialRouteName="Profile"
           screenOptions={{
             headerShown: false,
           }}>
+          <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Feed" component={Feed} />
           <Stack.Screen name="RideDetails" component={RideDetails} />
           <Stack.Screen name="FindRide" component={FindRide} />

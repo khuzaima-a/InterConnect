@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Tracker from "../Components/Tracker";
 import RideOptions from "../Components/RideOptions";
 import RideCard from "../Components/RideCard";
-import Rides from "../Rides";
+import Rides from "../Data/Rides";
 import { View, FlatList, Pressable } from "react-native";
 import {
   useSafeAreaInsets,

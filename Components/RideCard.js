@@ -12,7 +12,10 @@ const RideCard = ({ RideInfo }) => {
   };
   
   return (
-    <Pressable onPress={handlePress} style={styles.card}>
+    <Pressable
+      android_ripple={{ color: "rgb(211, 211, 211)" }}
+      onPress={handlePress}
+      style={styles.card}>
       <View style={styles.driver}>
         {RideInfo.driver.image ? (
           <Image source={RideInfo.driver.image} />
@@ -26,8 +29,9 @@ const RideCard = ({ RideInfo }) => {
 
       <View style={styles.RideInfo}>
         <View style={styles.source}>
-          <View style={{ flexDirection: "row", alignItems: 'center' }}>
-            <Text style={{ fontWeight: "bold", paddingRight: 15, fontSize: 12 }}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Text
+              style={{ fontWeight: "bold", paddingRight: 15, fontSize: 12 }}>
               {RideInfo.departureTime}
             </Text>
             <Text style={{ fontWeight: "bold" }}>{RideInfo.source}</Text>
@@ -38,24 +42,27 @@ const RideCard = ({ RideInfo }) => {
         </View>
 
         <View style={styles.destination}>
-          <Text style={{ fontWeight: "bold", paddingRight: 15, fontSize: 12 }}>{RideInfo.arrivalTime}</Text>
+          <Text style={{ fontWeight: "bold", paddingRight: 15, fontSize: 12 }}>
+            {RideInfo.arrivalTime}
+          </Text>
           <Text style={{ fontWeight: "bold" }}>{RideInfo.destination}</Text>
         </View>
         <View style={styles.car}>
-          { RideInfo.vehicle.type === 'Car' ? 
-          <IonIcon
-            style={{ paddingLeft:3 }}
-            name="car"
-            size={24}
-            color="#143758"
-          /> :
-          <Fontisto
-            style={{ paddingLeft:3 }}
-            name="motorcycle"
-            size={24}
-            color="#143758"
-          />
-        }
+          {RideInfo.vehicle.type === "Car" ? (
+            <IonIcon
+              style={{ paddingLeft: 3 }}
+              name="car"
+              size={24}
+              color="#143758"
+            />
+          ) : (
+            <Fontisto
+              style={{ paddingLeft: 3 }}
+              name="motorcycle"
+              size={24}
+              color="#143758"
+            />
+          )}
           <Text>{RideInfo.vehicle.name}</Text>
         </View>
       </View>
@@ -65,7 +72,7 @@ const RideCard = ({ RideInfo }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#F2F1F1",
+    backgroundColor: "rgb(242, 241, 241)",
     flexDirection: "row",
     width: "87%",
     alignSelf: "center",

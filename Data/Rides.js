@@ -13,6 +13,7 @@ const Rides = [
       seats: 3,
     },
     driver: {
+      id: 2,
       name: "Hanan",
       image: null,
     },
@@ -32,7 +33,8 @@ const Rides = [
       seats: 1,
     },
     driver: {
-      name: "Burhan",
+      id: 1,
+      name: "Khuzaima",
       image: null,
     },
     fare: 300 + " PKR",
@@ -51,6 +53,7 @@ const Rides = [
       seats: 3,
     },
     driver: {
+      id: 2,
       name: "Hanan",
       image: null,
     },
@@ -70,6 +73,7 @@ const Rides = [
       seats: 3,
     },
     driver: {
+      id: 2,
       name: "Hanan",
       image: null,
     },
@@ -89,6 +93,7 @@ const Rides = [
       seats: 3,
     },
     driver: {
+      id: 2,
       name: "Hanan",
       image: null,
     },
@@ -108,6 +113,7 @@ const Rides = [
       seats: 3,
     },
     driver: {
+      id: 2,
       name: "Hanan",
       image: null,
     },

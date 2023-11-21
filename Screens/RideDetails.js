@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet , Pressable, Dimensions, ScrollView } from "react-native";
 import IonIcon from "react-native-vector-icons/Ionicons";
-import Rides from "../Rides";
+import Rides from "../Data/Rides";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RideDetails = ({route, navigation}) => {
