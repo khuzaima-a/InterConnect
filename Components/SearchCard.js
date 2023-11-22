@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { View, Pressable, Modal, StyleSheet, Text, TextInput } from "react-native";
 import DatePicker from "react-native-modern-datepicker";
 import { getFormatedDate } from "react-native-modern-datepicker";
@@ -6,7 +6,7 @@ import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import FAIcon from "react-native-vector-icons/FontAwesome";
 
-const SearchCard = () => {
+const SearchCard = ({ navigation, data }) => {
   const today = new Date();
   const startDate = getFormatedDate(
     today.setDate(today.getDate()),
@@ -19,14 +19,35 @@ const SearchCard = () => {
   const [date, setDate] = useState(startDate);
   const [passengers, setPassengers] = useState(1);
 
+  const setValues = useCallback(() => {
+    if (data !== null) {
+      setSource(data.source);
+      setDestination(data.destination);
+      setDate(data.date);
+      setPassengers(data.passengers);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    setValues();
+  }, [setValues]);
+
+    
+
   const handleDateChange = (selectedDate) => {
     setDate(selectedDate);
     setOpen(false);
-    console.log(date);
   };
 
   const handleSearch = () => {
-    console.log(source, destination, date, passengers);
+    navigation.navigate("Feed", {
+      source: source.trim(),
+      destination: destination.trim(),
+      date: date,
+      passengers: passengers,
+    });
+
+
     setDate(startDate);
     setSource("");
     setDestination("");
@@ -89,13 +110,18 @@ const SearchCard = () => {
             <View style={styles.centered}>
               <View style={styles.modalContainer}>
                 <DatePicker
+                  options={{
+                    textHeaderColor: "#1185BA",
+                    mainColor: "#1185BA",
+                    textSecondaryColor: "#1185BA",
+                  }}
                   mode="calendar"
                   selected={date}
                   minimumDate={startDate}
                   onDateChange={handleDateChange}
                 />
-                <Pressable onPress={() => setOpen(false)}>
-                  <Text>Close</Text>
+                <Pressable onPress={() => setOpen(false)} style={styles.close}>
+                  <Text style={styles.button}>Close</Text>
                 </Pressable>
               </View>
             </View>
@@ -173,7 +199,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: "90%",
     paddingHorizontal: 20,
-    paddingVertical: 35,
+    paddingTop: 16,
+    paddingBottom: 32,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -202,6 +229,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
   },
+  close: {
+    borderRadius: 10,
+    paddingVertical: 10,
+    backgroundColor: "#1185BA",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 2,
+  }
 });
 
 export default SearchCard;

@@ -3,22 +3,35 @@ import Tracker from "../Components/Tracker";
 import RideOptions from "../Components/RideOptions";
 import RideCard from "../Components/RideCard";
 import Rides from "../Data/Rides";
-import { View, FlatList, Pressable } from "react-native";
+import { View, FlatList } from "react-native";
 import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
-const Feed = () => {
+const Feed = props => {
+  const insets = useSafeAreaInsets();
+  
   const [selected, setSelected] = useState("All");
   const [vehicles, setVehicles] = useState({});
 
-  const insets = useSafeAreaInsets();
+  const { source, destination, date, passengers } = props.route.params;
+
+  const filteredRides = Rides.filter((ride) => {
+    const sourceMatch =
+      !source || ride.source.toLowerCase().includes(source.toLowerCase());
+    const destinationMatch =
+      !destination ||
+      ride.destination.toLowerCase().includes(destination.toLowerCase());
+    const passengersMatch = !passengers || ride.vehicle.seats >= passengers;
+
+    return sourceMatch && destinationMatch && passengersMatch;
+  });
 
   useEffect(() => {
     setVehicles({
-      All: Rides.length,
-      Car: Rides.filter((Ride) => Ride.vehicle.type === "Car").length,
-      Bike: Rides.filter((Ride) => Ride.vehicle.type === "Bike").length,
+      All: filteredRides.length,
+      Car: filteredRides.filter((Ride) => Ride.vehicle.type === "Car").length,
+      Bike: filteredRides.filter((Ride) => Ride.vehicle.type === "Bike").length,
     });
   }, [])
 
@@ -36,10 +49,11 @@ const Feed = () => {
         paddingRight: insets.right,
       }}>
       <Tracker
-        source="Lahore, Pk"
-        destination="Islamabad, Pk"
-        passengers={1}
-        date="11/21"
+        source={source}
+        destination={destination}
+        passengers={passengers}
+        date={date}
+        navigation={props.navigation}
       />
       <RideOptions
         selected={selected}
@@ -51,8 +65,8 @@ const Feed = () => {
         style={{ width: "100%" }}
         data={
           selected === "All"
-            ? Rides
-            : Rides.filter((ride) => ride.vehicle.type === selected)
+            ? filteredRides
+            : filteredRides.filter((ride) => ride.vehicle.type === selected)
         }
         renderItem={({ item }) => <RideCard key={item.id} RideInfo={item} />}
         keyExtractor={(item) => item.id.toString()}

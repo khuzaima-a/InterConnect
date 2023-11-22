@@ -6,7 +6,7 @@ import Rides from "../Data/Rides";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import RideCard from "../Components/RideCard";
 
-const Profile = ({ id = 2 }) => {
+const Profile = ({ id = 1 }) => {
   const user = Users.filter((user) => user.id === id)[0];
   const rides = Rides.filter((ride) => ride.driver.id === id);
   const insets = useSafeAreaInsets();

@@ -1,14 +1,25 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable} from "react-native";
 import FAIcon from "react-native-vector-icons/FontAwesome";
 import Fontisto from "react-native-vector-icons/Fontisto";
 
 const Tracker = (props) => {
+  const handlePress = () => {
+    props.navigation.navigate("FindRide", {
+      source: props.source,
+      destination: props.destination,
+      date: props.date,
+      passengers: props.passengers,
+    });
+  }
 
   return (
-    <View style={styles.tracker}>
+    <Pressable
+      android_ripple={{ color: "rgb(211, 211, 211)" }}
+      onPress={handlePress}
+      style={styles.tracker}>
       <FAIcon name="angle-left" size={25} color={"rgba(102, 102, 102, 0.7)"} />
 
-      <View style={{gap: 4}}>
+      <View style={{ gap: 4 }}>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
           <Text style={{ fontSize: 12 }}>{props.source}</Text>
           <Fontisto
@@ -23,7 +34,7 @@ const Tracker = (props) => {
           {props.passengers > 1 ? "passengers" : "passenger"}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
