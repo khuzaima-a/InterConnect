@@ -32,11 +32,13 @@ const handlePressOutside = () => {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="TimePick"
+          initialRouteName="Profile"
           screenOptions={{
             headerShown: false,
           }}>
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="Signup" component={Signup} />
+          <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Pickup" component={Pickup} />
           <Stack.Screen name="Dropoff" component={Dropoff} />
           <Stack.Screen name="DatePick" component={DatePick} />
@@ -56,6 +58,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor:"red"
   },
 });

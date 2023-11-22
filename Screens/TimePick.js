@@ -2,17 +2,13 @@ import React, { useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import IonIcon from "react-native-vector-icons/Ionicons";
+import { TimePicker } from "react-native-simple-time-picker";
 
 const TimePick = () => {
   const insets = useSafeAreaInsets();
 
-
-
-  const [time, setTime] = useState("12:00");
-
-  const handleTimeChange = (selectedTime) => {
-    setDate(selectedTime);
-  };
+  const [hours, setHours] = useState(0)
+  const [mints, setMints] = useState(0)
 
   return (
     <View
@@ -39,6 +35,16 @@ const TimePick = () => {
         }}>
         At what time will you pick passengers up?
       </Text>
+      <View style={styles.calendar}>
+        <TimePicker
+          selectedHours={hours}
+          selectedMinutes={mints}
+          onChange={(hours, minutes) => {
+            setHours(hours);
+            setMints(minutes);
+          }}
+        />
+      </View>
     </View>
   );
 };
@@ -56,6 +62,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: 18,
   },
+
 });
 
 export default TimePick;

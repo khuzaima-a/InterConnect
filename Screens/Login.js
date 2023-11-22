@@ -7,6 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
+import Users from '../Data/Users'
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -32,6 +33,10 @@ const Login = () => {
     setPasswordError(false);
 
  if (email && password && validateEmail(email) & password.length >= 5) {
+      const user = Users.find(
+        (user) => user.email === email && user.password === password
+      );
+
       setEmail("");
       setPassword("");
       Keyboard.dismiss();

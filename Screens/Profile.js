@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+  Pressable,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Users from "../Data/Users";
 import Rides from "../Data/Rides";
@@ -27,9 +34,14 @@ const Profile = ({ id = 1 }) => {
         </View>
       </View>
 
-      <View style={{ width: "80%", marginTop: 12, marginBottom: 18 }}>
+      <View
+        style={{
+          width: "80%",
+          marginTop: 12,
+          marginBottom: 18,
+        }}>
         <Text style={{ color: "#1185BA", fontWeight: "bold", fontSize: 15 }}>
-          Edit profile picture
+          Edit profile
         </Text>
       </View>
 
