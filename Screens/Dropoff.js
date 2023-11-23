@@ -5,14 +5,14 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Searchbar } from "react-native-paper";
 import NextButton from "../Components/NextButton";
 
-const Dropoff = ({ navigation }) => {
-  const [search, setSearch] = useState("");
+const Dropoff = ({ navigation, route }) => {
+  const [destination, setDestination] = useState("");
 
   const onNext = () => {
-    if (search === "") {
+    if (destination === "") {
       return;
     }
-    navigation.navigate("DatePick");
+    navigation.navigate("DatePick", { ...route.params, destination });
   };
 
   const insets = useSafeAreaInsets();
@@ -50,8 +50,8 @@ const Dropoff = ({ navigation }) => {
           marginTop: 18,
         }}
         placeholder="Enter the full address"
-        onChangeText={(text) => setSearch(text)}
-        value={search}
+        onChangeText={(text) => setDestination(text)}
+        value={destination}
       />
       <NextButton onPress={onNext} />
     </View>

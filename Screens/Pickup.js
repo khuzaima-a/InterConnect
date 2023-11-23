@@ -1,45 +1,18 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Searchbar } from "react-native-paper";
-import { useAuth } from "../Context/AuthContext"
 import NextButton from "../Components/NextButton";
 
 const Pickup = ({ navigation }) => {
-  const { loggedInUser } = useAuth();
-  const [search, setSearch] = useState("");
-  const [data, setData] = useState({});
-
-  useEffect(() => {
-    setData({
-      id: Math.floor(Math.random() * 100000000000 + 1),
-      source: "",
-      destination: "",
-      date: "",
-      departureTime: "",
-      arrivalTime: "",
-      vehicle: {
-        name: "",
-        color: "",
-        type: "",
-        seats: 0,
-      },
-      driver: {
-        id: loggedInUser.id,
-        name: loggedInUser.name,
-        image: loggedInUser.image,
-      },
-      fare: 0,
-    });
-  }, [])
+  const [source, setSource] = useState("");
 
   const onNext = () => {
-    if (search === "") {
+    if (source === "") {
       return;
     }
-    setData({ ...data, source: search });
-    navigation.navigate("Dropoff", { data });
+    navigation.navigate("Dropoff", { source });
   }
 
   const insets = useSafeAreaInsets();
@@ -54,7 +27,7 @@ const Pickup = ({ navigation }) => {
         ...styles.container,
       }}>
       <IonIcon
-      onPress={() => navigation.goBack()}
+        onPress={() => navigation.goBack()}
         name="arrow-back"
         size={30}
         color="#1185BA"
@@ -78,8 +51,8 @@ const Pickup = ({ navigation }) => {
           marginTop: 18,
         }}
         placeholder="Enter the full address"
-        onChangeText={(text) => setSearch(text)}
-        value={search}
+        onChangeText={(text) => setSource(text)}
+        value={source}
       />
       <NextButton onPress={onNext} />
     </View>

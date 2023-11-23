@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import Tracker from "../Components/Tracker";
 import RideOptions from "../Components/RideOptions";
 import RideCard from "../Components/RideCard";
-import Rides from "../Data/Rides";
+import { useRides } from '../Context/RidesContext'
 import { View, FlatList } from "react-native";
 import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
 const Feed = props => {
+  const { rides } = useRides();
   const insets = useSafeAreaInsets();
   
   const [selected, setSelected] = useState("All");
@@ -16,7 +17,7 @@ const Feed = props => {
 
   const { source, destination, date, passengers } = props.route.params;
 
-  const filteredRides = Rides.filter((ride) => {
+  const filteredRides = rides.filter((ride) => {
     const sourceMatch =
       !source || ride.source.toLowerCase().includes(source.toLowerCase());
     const destinationMatch =

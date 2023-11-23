@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import NextButton from "../Components/NextButton";
 
-const DatePick = ({ navigation }) => {
+const DatePick = ({ navigation, route }) => {
           const insets = useSafeAreaInsets();
 
           const today = new Date();
@@ -14,12 +14,11 @@ const DatePick = ({ navigation }) => {
             today.setDate(today.getDate()),
             "YYYY/MM/DD"
           );
-
           const [date, setDate] = useState(startDate);
 
-            const handleDateChange = (selectedDate) => {
-              setDate(selectedDate);
-            };
+          const onNext = () => {
+            navigation.navigate('TimePick', { ...route.params, date });
+          }
 
             return (
               <View
@@ -56,10 +55,10 @@ const DatePick = ({ navigation }) => {
                   mode="calendar"
                   selected={date}
                   minimumDate={startDate}
-                  onDateChange={handleDateChange}
+                  onDateChange={(selectedDate) => setDate(selectedDate)}
                   style={styles.calendar}
                 />
-                <NextButton onPress={() => navigation.navigate("TimePick")} />
+                <NextButton onPress={onNext} />
               </View>
             );
 

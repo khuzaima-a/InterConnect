@@ -1,12 +1,19 @@
-import { View, Text, StyleSheet , Pressable, Dimensions, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Dimensions,
+  ScrollView,
+} from "react-native";
 import IonIcon from "react-native-vector-icons/Ionicons";
-import Rides from "../Data/Rides";
+import { useRides } from "../Context/RidesContext";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const RideDetails = ({route, navigation}) => {
-const ride = Rides.filter( ride => ride.id === route.params.id )[0];
+const RideDetails = ({ route, navigation }) => {
+  const { rides } = useRides();
+  const ride = rides.filter((ride) => ride.id === route.params.id)[0];
 
-const screenWidth = Dimensions.get("window").width;
   ride.date = "Tue 10 October";
   const insets = useSafeAreaInsets();
   return (
@@ -136,7 +143,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 16,
     width: "100%",
-    paddingBottom: 120
+    paddingBottom: 120,
   },
   date: {
     fontSize: 24,
@@ -190,7 +197,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     marginBottom: 36,
     bottom: 0,
-    alignSelf: 'center'
+    alignSelf: "center",
   },
   button: {
     color: "white",

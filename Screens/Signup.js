@@ -6,6 +6,7 @@ import {
   Keyboard,
   StyleSheet,
 } from "react-native";
+import { useUsers } from '../Context/UserContext'
 import { TextInput, DefaultTheme } from "react-native-paper";
 
 const Signup = ({ navigation }) => {
@@ -16,6 +17,7 @@ const Signup = ({ navigation }) => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
+  const { users, setUsers } = useUsers();
 
   const theme = {
     ...DefaultTheme,
@@ -36,6 +38,21 @@ const Signup = ({ navigation }) => {
     setPasswordError(false);
 
     if (name && email && password && validateEmail(email) & password.length >= 5) {
+      const newUser = {
+        id: Math.floor(Math.random() * 1000000000 + 1),
+        name: name,
+        email: email,
+        gender: "",
+        about:
+          "Spreading smiles one ride at a time – your trusted journey to joy",
+        dp: null,
+        password: password,
+        rides: [],
+      };
+
+      setUsers([...users, newUser]);
+      navigation.navigate('Login')
+
       setName("");
       setEmail("");
       setPassword("");

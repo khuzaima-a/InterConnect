@@ -7,12 +7,13 @@ import {
   StyleSheet,
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
-import Users from "../Data/Users"
+import { useUsers } from '../Context/UserContext'
 
 const ForgotPassword = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [isInValid, setIsInValid] = useState(false);
+  const { users } = useUsers();
 
   const theme = {
     ...DefaultTheme,
@@ -32,9 +33,7 @@ const ForgotPassword = ({ navigation }) => {
     setIsInValid(false);
 
     if (email && validateEmail(email)) {
-      const user = Users.find(
-        (user) => user.email === email
-      );
+      const user = users.find((user) => user.email === email);
 
       if(user) {
         navigation.navigate("OTP", {

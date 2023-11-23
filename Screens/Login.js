@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
-import Users from '../Data/Users'
+import { useUsers } from '../Context/UserContext'
 import { useAuth } from "../Context/AuthContext";
 
 const Login = ({ navigation }) => {
@@ -17,6 +17,7 @@ const Login = ({ navigation }) => {
    const [passwordError, setPasswordError] = useState(false);
    const [isInvalid, setIsInvalid] = useState(false);
    const { login } = useAuth();
+   const { users } = useUsers();
 
   const theme = {
     ...DefaultTheme,
@@ -37,7 +38,7 @@ const Login = ({ navigation }) => {
     setIsInvalid(false);
 
  if (email && password && validateEmail(email) & password.length >= 5) {
-      const user = Users.find(
+      const user = users.find(
         (user) => user.email === email && user.password === password
       );
 

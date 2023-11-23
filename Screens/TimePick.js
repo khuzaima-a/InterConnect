@@ -5,7 +5,7 @@ import IonIcon from "react-native-vector-icons/Ionicons";
 import { TimePicker } from "react-native-simple-time-picker";
 import NextButton from "../Components/NextButton";
 
-const TimePick = ({ navigation }) => {
+const TimePick = ({ navigation, route }) => {
   const insets = useSafeAreaInsets();
 
   const [hours, setHours] = useState(0)

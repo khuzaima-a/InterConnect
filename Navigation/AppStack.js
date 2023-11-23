@@ -13,7 +13,7 @@ const AppStack = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="FindRide"
+      initialRouteName="Profile"
       screenOptions={{
         headerShown: false,
       }}>
