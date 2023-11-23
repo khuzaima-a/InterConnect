@@ -94,7 +94,7 @@ const RideDetails = ({ route, navigation }) => {
               style={{ fontSize: 15, color: "#1185BA", fontWeight: "bold" }}>
               Contact {ride.driver.name}
             </Text>
-            <IonIcon name="person-circle" size={40} color="#b4b4b4" />
+            <IonIcon name="person-circle" size={40} color="#9cadb8" />
           </View>
 
           <View
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 2,
-    marginBottom: 36,
+    marginBottom: 16,
     bottom: 0,
     alignSelf: "center",
   },

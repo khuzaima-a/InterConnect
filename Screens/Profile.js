@@ -33,13 +33,15 @@ const Profile = ({ navigation }) => {
       <View style={styles.nameDp}>
         <View style={styles.name}>
           <Text style={{ fontSize: 26, fontWeight: "bold" }}>{user.name}</Text>
-          {loggedInUser.gender !== '' ? <Text style={{ color: "rgba(0,0,0,0.7)" }}>{user.gender}</Text>:null}
+          {loggedInUser.gender !== "" ? (
+            <Text style={{ color: "rgba(0,0,0,0.7)" }}>{user.gender}</Text>
+          ) : null}
         </View>
         <View style={styles.Dp}>
           {user.dp ? (
             <Image source={user.dp} />
           ) : (
-            <IonIcon name="person-circle" size={100} color="rgba(0,0,0,0.3)" />
+            <IonIcon name="person-circle" size={100} color="#9cadb8" />
           )}
         </View>
       </View>

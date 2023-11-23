@@ -6,6 +6,7 @@ import { useAuth } from '../Context/AuthContext';
 
 function AppNav() {
   const { isLoggedIn } = useAuth();
+  
   return (
     <NavigationContainer>
       {isLoggedIn ? <AppStack /> : <AuthStack />}

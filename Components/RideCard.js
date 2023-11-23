@@ -19,7 +19,7 @@ const RideCard = ({ RideInfo, navigation }) => {
         {RideInfo.driver.image ? (
           <Image source={RideInfo.driver.image} />
         ) : (
-          <IonIcon name="person-circle" size={60} color="#b4b4b4" />
+          <IonIcon name="person-circle" size={60} color="#9cadb8" />
         )}
         <Text style={{ fontWeight: "bold", fontSize: 16 }}>
           {RideInfo.driver.name}
@@ -71,7 +71,7 @@ const RideCard = ({ RideInfo, navigation }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "rgb(242, 241, 241)",
+    backgroundColor: "rgb(235, 235, 235)",
     flexDirection: "row",
     width: "87%",
     alignSelf: "center",

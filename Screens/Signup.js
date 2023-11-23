@@ -1,12 +1,6 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  Pressable,
-  Keyboard,
-  StyleSheet,
-} from "react-native";
-import { useUsers } from '../Context/UserContext'
+import { View, Text, Pressable, Keyboard, StyleSheet } from "react-native";
+import { useUsers } from "../Context/UserContext";
 import { TextInput, DefaultTheme } from "react-native-paper";
 
 const Signup = ({ navigation }) => {
@@ -37,7 +31,14 @@ const Signup = ({ navigation }) => {
     setEmailError(false);
     setPasswordError(false);
 
-    if (name && email && password && validateEmail(email) & password.length >= 5) {
+    if (
+      name &&
+      email &&
+      password &&
+      validateEmail(email) && 
+      (password.length >= 5) &&
+      name.length <= 15
+    ) {
       const newUser = {
         id: Math.floor(Math.random() * 1000000000 + 1),
         name: name,
@@ -51,7 +52,7 @@ const Signup = ({ navigation }) => {
       };
 
       setUsers([...users, newUser]);
-      navigation.navigate('Login')
+      navigation.navigate("Login");
 
       setName("");
       setEmail("");
@@ -60,11 +61,11 @@ const Signup = ({ navigation }) => {
       return;
     }
 
-    if(!name) {
-      setNameError(true)
+    if (!name || name.length > 15) {
+      setNameError(true);
     }
-    if(!email || !validateEmail(email)) {
-      setEmailError(true)
+    if (!email || !validateEmail(email)) {
+      setEmailError(true);
     }
     if (!password || password.length < 5) {
       setPasswordError(true);

@@ -1,31 +1,60 @@
-import { createStackNavigator } from "@react-navigation/stack";
-import FindRide from "../Screens/FindRide";
-import Feed from "../Screens/Feed";
-import RideDetails from "../Screens/RideDetails";
-import Profile from "../Screens/Profile";
-import Pickup from "../Screens/Pickup";
-import Dropoff from "../Screens/Dropoff";
-import TimePick from "../Screens/TimePick";
-import DatePick from "../Screens/DatePick";
+import React from "react";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import AntIcon from "react-native-vector-icons/AntDesign";
+
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeStackScreen from "./HomeStackScreen";
+import ChatStackScreen from "./ChatStackScreen";
+import PostStackScreen from "./PostStackScreen";
+import ProfileStackScreen from "./ProfileStackScreen";
 
 const AppStack = () => {
-  const Stack = createStackNavigator();
+  const Tab = createBottomTabNavigator();
 
   return (
-    <Stack.Navigator
-      initialRouteName="Profile"
-      screenOptions={{
+    <Tab.Navigator
+      initialRouteName="HomeScreen"
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color }) => {
+          let iconName;
+          let rn = route.name;
+          headerShown = false;
+
+          if (rn === "HomeScreen") {
+            iconName = focused ? "home" : "home-outline";
+          } else if (rn === "PostScreen") {
+            return (
+              <AntIcon
+                name={focused ? "pluscircle" : "pluscircleo"}
+                size={24}
+                color={color}
+              />
+            );
+          } else if (rn === "ChatScreen") {
+            iconName = focused ? "chatbox-sharp" : "chatbox-outline";
+          } else if (rn === "ProfileScreen") {
+            iconName = focused ? "person" : "person-outline";
+          }
+
+          return <Ionicons name={iconName} size={24} color={color} />;
+        },
         headerShown: false,
-      }}>
-      <Stack.Screen name="FindRide" component={FindRide} />
-      <Stack.Screen name="Feed" component={Feed} />
-      <Stack.Screen name="RideDetails" component={RideDetails} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Pickup" component={Pickup} />
-      <Stack.Screen name="Dropoff" component={Dropoff} />
-      <Stack.Screen name="DatePick" component={DatePick} />
-      <Stack.Screen name="TimePick" component={TimePick} />
-    </Stack.Navigator>
+        tabBarActiveTintColor: "white",
+        tabBarInactiveTintColor: "white",
+        tabBarActiveBackgroundColor: "rgba(17, 133, 186, 0.93)",
+        tabBarInactiveBackgroundColor: "#1185BA",
+        tabBarShowLabel: false,
+        tabBarHideOnKeyboard: true,
+        tabBarStyle: {
+          bottom: 0,
+          height: 50,
+        },
+      })}>
+      <Tab.Screen name="HomeScreen" component={HomeStackScreen} />
+      <Tab.Screen name="PostScreen" component={PostStackScreen} />
+      <Tab.Screen name="ChatScreen" component={ChatStackScreen} />
+      <Tab.Screen name="ProfileScreen" component={ProfileStackScreen} />
+    </Tab.Navigator>
   );
 };
 
