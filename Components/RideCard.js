@@ -1,8 +1,6 @@
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import { Text, View, StyleSheet, Pressable, Image } from "react-native";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import Fontisto from "react-native-vector-icons/Fontisto";
-import RideDetails from "../Screens/RideDetails"
-import { useNavigation } from "@react-navigation/native";
 
 const RideCard = ({ RideInfo, navigation }) => {
 
@@ -17,7 +15,10 @@ const RideCard = ({ RideInfo, navigation }) => {
       style={styles.card}>
       <View style={styles.driver}>
         {RideInfo.driver.image ? (
-          <Image source={RideInfo.driver.image} />
+          <Image
+            source={{ uri: RideInfo.driver.image }}
+            style={{ width: 50, height: 50, borderRadius: 25, marginVertical: 5 }}
+          />
         ) : (
           <IonIcon name="person-circle" size={60} color="#9cadb8" />
         )}

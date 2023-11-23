@@ -3,6 +3,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import AntIcon from "react-native-vector-icons/AntDesign";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import HomeStackScreen from "./HomeStackScreen";
 import ChatStackScreen from "./ChatStackScreen";
 import PostStackScreen from "./PostStackScreen";

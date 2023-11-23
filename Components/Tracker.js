@@ -14,7 +14,7 @@ const Tracker = (props) => {
 
   return (
     <Pressable
-      android_ripple={{ color: "rgb(211, 211, 211)" }}
+      android_ripple={{ color: "rgb(201, 201, 201)" }}
       onPress={handlePress}
       style={styles.tracker}>
       <FAIcon name="angle-left" size={25} color={"rgba(102, 102, 102, 0.7)"} />
@@ -40,17 +40,18 @@ const Tracker = (props) => {
 
 const styles = StyleSheet.create({
   tracker: {
-          width: "85%",
-    backgroundColor: "#F2F1F1",
+    width: "85%",
+    backgroundColor: "rgb(230, 230, 230)",
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 24,
     paddingBottom: 9,
     paddingTop: 4,
-    gap: 16,
+    gap: 20,
     borderRadius: 16,
-    borderColor: "rgba(0,0,0,0.25)",
+    borderColor: "rgba(0,0,0,0.05)",
     borderWidth: 1,
+    elevation: 4
   },
 });
 

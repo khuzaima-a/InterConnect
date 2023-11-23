@@ -5,6 +5,7 @@ import {
   Pressable,
   Dimensions,
   ScrollView,
+  Image
 } from "react-native";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import { useRides } from "../Context/RidesContext";
@@ -13,8 +14,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 const RideDetails = ({ route, navigation }) => {
   const { rides } = useRides();
   const ride = rides.filter((ride) => ride.id === route.params.id)[0];
-
-  ride.date = "Tue 10 October";
   const insets = useSafeAreaInsets();
   return (
     <View
@@ -38,7 +37,7 @@ const RideDetails = ({ route, navigation }) => {
               color="#1185BA"
               style={{ marginHorizontal: 3 }}
             />
-            <Text style={styles.date}> {ride.date}</Text>
+            <Text style={styles.date}>{ride.date}</Text>
 
             <View
               style={{
@@ -94,7 +93,14 @@ const RideDetails = ({ route, navigation }) => {
               style={{ fontSize: 15, color: "#1185BA", fontWeight: "bold" }}>
               Contact {ride.driver.name}
             </Text>
-            <IonIcon name="person-circle" size={40} color="#9cadb8" />
+            {ride.driver.image ? (
+              <Image
+                source={{ uri: ride.driver.image }}
+                style={{ width: 36, height: 36, borderRadius: 18, margin: 4 }}
+              />
+            ) : (
+              <IonIcon name="person-circle" size={40} color="#9cadb8" />
+            )}
           </View>
 
           <View
@@ -142,7 +148,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 16,
-    width: "100%",
     paddingBottom: 120,
   },
   date: {
@@ -150,6 +155,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "left",
     marginTop: 14,
+    marginHorizontal: 6
   },
   line: {
     width: 1,

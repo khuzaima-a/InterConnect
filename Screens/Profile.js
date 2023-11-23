@@ -28,6 +28,10 @@ const Profile = ({ navigation }) => {
     console.log("Edit Profile");
     }
 
+    const handleLogout = () => {
+      logout();
+    }
+
   const renderHeader = () => (
     <View style={styles.container}>
       <View style={styles.nameDp}>
@@ -39,8 +43,11 @@ const Profile = ({ navigation }) => {
         </View>
         <View style={styles.Dp}>
           {user.dp ? (
-            <Image source={user.dp} />
-          ) : (
+            <Image
+              source={{uri: user.dp}}
+              style={{width: 82, height: 82, borderRadius: 42, margin: 13}} 
+            />
+              ) : (
             <IonIcon name="person-circle" size={100} color="#9cadb8" />
           )}
         </View>
@@ -66,7 +73,7 @@ const Profile = ({ navigation }) => {
           </Text>
         </Pressable>
         <Pressable
-          onPress={logout}
+          onPress={handleLogout}
           android_ripple={{ color: "rgba(0,0,0,0.1)" }}
           style={styles.buttonCont}>
           <MIcon name="logout" size={30} color="red" />

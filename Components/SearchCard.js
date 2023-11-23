@@ -1,5 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { View, Pressable, Modal, StyleSheet, Text, TextInput } from "react-native";
+import {
+  View,
+  Pressable,
+  Modal,
+  StyleSheet,
+  Text,
+  TextInput,
+} from "react-native";
 import DatePicker from "react-native-modern-datepicker";
 import { getFormatedDate } from "react-native-modern-datepicker";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
@@ -17,6 +24,7 @@ const SearchCard = ({ navigation, data }) => {
   const [destination, setDestination] = useState("");
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(startDate);
+  const [passengersModal, setPassengerModal] = useState(false);
   const [passengers, setPassengers] = useState(1);
 
   const setValues = useCallback(() => {
@@ -32,15 +40,13 @@ const SearchCard = ({ navigation, data }) => {
     setValues();
   }, [setValues]);
 
-    
-
   const handleDateChange = (selectedDate) => {
     setDate(selectedDate);
     setOpen(false);
   };
 
   const handleSearch = () => {
-    if(source.trim() === "" || destination.trim() === "") {
+    if (source.trim() === "" || destination.trim() === "") {
       return;
     }
     navigation.navigate("Feed", {
@@ -50,11 +56,15 @@ const SearchCard = ({ navigation, data }) => {
       passengers: passengers,
     });
 
-
     setDate(startDate);
     setSource("");
     setDestination("");
     setPassengers(1);
+  };
+
+  const handlePress = (num) => {
+    setPassengers(num);
+    setPassengerModal(false);
   };
 
   return (
@@ -132,16 +142,57 @@ const SearchCard = ({ navigation, data }) => {
         </View>
         <View style={styles.verticalLine}></View>
         <View style={styles.passengers}>
-          <Pressable style={{ flexDirection: "row", alignItems: "center" }}>
+          <Pressable
+            onPress={() => setPassengerModal(true)}
+            style={{ flexDirection: "row", alignItems: "center" }}>
             <MaterialIcon
               name="person-outline"
               size={30}
               color="black"
               style={{ paddingRight: 5 }}
             />
-            <Text>1</Text>
+            <Text>{passengers}</Text>
           </Pressable>
         </View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={passengersModal}>
+          <View style={styles.centered}>
+            <View style={{ ...styles.modalContainer, width: "80%" }}>
+              <View style={styles.nums}>
+                <Pressable
+                  onPress={() => handlePress(1)}
+                  style={[styles.num, passengers === 1 ? styles.active : null]}>
+                  <Text style={passengers === 1 ? { color: "white" } : null}>
+                    1
+                  </Text>
+                </Pressable>
+                <Pressable
+                  onPress={() => handlePress(2)}
+                  style={[styles.num, passengers === 2 ? styles.active : null]}>
+                  <Text style={passengers === 2 ? { color: "white" } : null}>
+                    2
+                  </Text>
+                </Pressable>
+                <Pressable
+                  onPress={() => handlePress(3)}
+                  style={[styles.num, passengers === 3 ? styles.active : null]}>
+                  <Text style={passengers === 3 ? { color: "white" } : null}>
+                    3
+                  </Text>
+                </Pressable>
+                <Pressable
+                  onPress={() => handlePress(4)}
+                  style={[styles.num, passengers === 4 ? styles.active : null]}>
+                  <Text style={passengers === 4 ? { color: "white" } : null}>
+                    4
+                  </Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </Modal>
       </View>
 
       <Pressable
@@ -168,7 +219,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 6,
     position: "relative",
-    top: -50
+    top: -50,
   },
   centered: {
     flex: 1,
@@ -241,7 +292,23 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 2,
-  }
+  },
+  nums: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    marginTop: 16,
+  },
+  num: {
+    backgroundColor: "rgba(100,100,100,0.15)",
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+  },
+  active: {
+    backgroundColor: "#1185BA",
+  },
 });
 
 export default SearchCard;

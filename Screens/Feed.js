@@ -23,9 +23,10 @@ const Feed = props => {
     const destinationMatch =
       !destination ||
       ride.destination.toLowerCase().includes(destination.toLowerCase());
+      const dateMatch = !date || ride.date >= date;
     const passengersMatch = !passengers || ride.vehicle.seats >= passengers;
 
-    return sourceMatch && destinationMatch && passengersMatch;
+    return sourceMatch && destinationMatch && dateMatch && passengersMatch;
   });
 
   useEffect(() => {
