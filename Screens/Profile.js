@@ -5,17 +5,18 @@ import {
   StyleSheet,
   FlatList,
   Image,
-  Pressable,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Users from "../Data/Users";
 import Rides from "../Data/Rides";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import RideCard from "../Components/RideCard";
+import { useAuth } from '../Context/AuthContext';
 
-const Profile = ({ id = 1 }) => {
-  const user = Users.filter((user) => user.id === id)[0];
-  const rides = Rides.filter((ride) => ride.driver.id === id);
+const Profile = ({ navigation }) => {
+  const { loggedInUser } = useAuth();
+  const user = Users.filter((user) => user.id === loggedInUser.id)[0];
+  const rides = Rides.filter((ride) => ride.driver.id === loggedInUser.id);
   const insets = useSafeAreaInsets();
 
   const renderHeader = () => (
@@ -80,7 +81,7 @@ const Profile = ({ id = 1 }) => {
       }}
       ListHeaderComponent={renderHeader}
       data={rides}
-      renderItem={({ item }) => <RideCard key={item.id} RideInfo={item} />}
+      renderItem={({ item }) => <RideCard key={item.id} RideInfo={item} navigation={navigation} />}
       keyExtractor={(item) => item.id.toString()}
     />
   );

@@ -17,7 +17,7 @@ const Rides = [
       name: "Hanan",
       image: null,
     },
-    fare: 1900 + " PKR",
+    fare: 1900,
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const Rides = [
       name: "Khuzaima",
       image: null,
     },
-    fare: 300 + " PKR",
+    fare: 300 ,
   },
   {
     id: 3,
@@ -57,7 +57,7 @@ const Rides = [
       name: "Hanan",
       image: null,
     },
-    fare: 1900 + " PKR",
+    fare: 1900 ,
   },
   {
     id: 4,
@@ -77,7 +77,7 @@ const Rides = [
       name: "Hanan",
       image: null,
     },
-    fare: 1900 + " PKR",
+    fare: 1900,
   },
   {
     id: 5,
@@ -97,7 +97,7 @@ const Rides = [
       name: "Khuzaima",
       image: null,
     },
-    fare: 2300 + " PKR",
+    fare: 2300 ,
   },
   {
     id: 6,
@@ -117,7 +117,7 @@ const Rides = [
       name: "Hanan",
       image: null,
     },
-    fare: 1900 + " PKR",
+    fare: 1900,
   },
 ];
 

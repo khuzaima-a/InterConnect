@@ -40,6 +40,9 @@ const SearchCard = ({ navigation, data }) => {
   };
 
   const handleSearch = () => {
+    if(source.trim() === "" || destination.trim() === "") {
+      return;
+    }
     navigation.navigate("Feed", {
       source: source.trim(),
       destination: destination.trim(),

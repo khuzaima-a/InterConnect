@@ -4,8 +4,7 @@ import Fontisto from "react-native-vector-icons/Fontisto";
 import RideDetails from "../Screens/RideDetails"
 import { useNavigation } from "@react-navigation/native";
 
-const RideCard = ({ RideInfo }) => {
-  const navigation = useNavigation();
+const RideCard = ({ RideInfo, navigation }) => {
 
   const handlePress = () => {
     navigation.navigate("RideDetails", { id: RideInfo.id });
@@ -37,7 +36,7 @@ const RideCard = ({ RideInfo }) => {
             <Text style={{ fontWeight: "bold" }}>{RideInfo.source}</Text>
           </View>
           <Text style={{ color: "red", fontWeight: "bold", fontSize: 15 }}>
-            {RideInfo.fare}
+            {RideInfo.fare} PKR
           </Text>
         </View>
 

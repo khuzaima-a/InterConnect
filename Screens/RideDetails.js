@@ -77,7 +77,7 @@ const screenWidth = Dimensions.get("window").width;
             }}>
             <Text>Total price for 1 passenger</Text>
             <Text style={{ color: "red", fontWeight: "bold" }}>
-              {ride.fare}
+              {ride.fare} PKR
             </Text>
           </View>
           <View style={styles.HLine}></View>

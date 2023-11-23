@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import { TimePicker } from "react-native-simple-time-picker";
+import NextButton from "../Components/NextButton";
 
-const TimePick = () => {
+const TimePick = ({ navigation }) => {
   const insets = useSafeAreaInsets();
 
   const [hours, setHours] = useState(0)
@@ -20,6 +21,7 @@ const TimePick = () => {
         paddingRight: insets.right,
       }}>
       <IonIcon
+        onPress={() => navigation.goBack()}
         name="arrow-back"
         size={30}
         color="#1185BA"
@@ -45,6 +47,7 @@ const TimePick = () => {
           }}
         />
       </View>
+      <NextButton onPress={() => console.log("Pressed")}/>
     </View>
   );
 };

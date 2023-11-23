@@ -9,9 +9,10 @@ import {
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
 
-const ResetPassword = () => {
+const ResetPassword = ({ navigation, route }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState(null)
 
   const theme = {
     ...DefaultTheme,
@@ -22,9 +23,20 @@ const ResetPassword = () => {
   };
 
   const handleSubmit = () => {
+    setError(null);
+  Keyboard.dismiss();
+    if(password.length < 5) {
+      setError("Password should be atleast 5 characters")
+      return;
+    }
+    if(password !== confirmPassword) {
+      setError("Password and confirm password should be same")
+      return;
+    }
+
+    navigation.navigate("Login");
     setPassword("");
     setConfirmPassword("");
-    Keyboard.dismiss();
   };
 
   return (
@@ -38,6 +50,7 @@ const ResetPassword = () => {
           In order to keep your account safe you need to create a strong
           password
         </Text>
+        { error && <Text style={{ color: "red", textAlign: "center", marginBottom: 16 }}>{error}</Text> }
         <View style={styles.form}>
           <TextInput
             style={styles.input}

@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { View, Text, Pressable, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import DatePicker from "react-native-modern-datepicker";
 import { getFormatedDate } from "react-native-modern-datepicker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import IonIcon from "react-native-vector-icons/Ionicons";
+import NextButton from "../Components/NextButton";
 
-const DatePick = () => {
+const DatePick = ({ navigation }) => {
           const insets = useSafeAreaInsets();
 
           const today = new Date();
@@ -30,6 +31,7 @@ const DatePick = () => {
                   paddingRight: insets.right,
                 }}>
                 <IonIcon
+                  onPress={() => navigation.goBack()}
                   name="arrow-back"
                   size={30}
                   color="#1185BA"
@@ -57,6 +59,7 @@ const DatePick = () => {
                   onDateChange={handleDateChange}
                   style={styles.calendar}
                 />
+                <NextButton onPress={() => navigation.navigate("TimePick")} />
               </View>
             );
 

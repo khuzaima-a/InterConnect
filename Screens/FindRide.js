@@ -9,7 +9,7 @@ import SearchCard from "../Components/SearchCard";
 const FindRide = ({ navigation, route }) => {
           const screenWidth = Dimensions.get("window").width;
           const screenHeight = Dimensions.get("window").height;
-          
+
           let data;
           route.params?.source ? data = route.params : data = null;
           return (

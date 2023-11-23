@@ -7,10 +7,12 @@ import {
   StyleSheet,
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
+import Users from "../Data/Users"
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
+  const [isInValid, setIsInValid] = useState(false);
 
   const theme = {
     ...DefaultTheme,
@@ -27,10 +29,21 @@ const ForgotPassword = () => {
 
   const handleSendCode = () => {
     setEmailError(false);
+    setIsInValid(false);
 
     if (email && validateEmail(email)) {
-      console.log("Sending OTP to:", email);
-      setEmail("");
+      const user = Users.find(
+        (user) => user.email === email
+      );
+
+      if(user) {
+        navigation.navigate("OTP", {
+          email: email,
+        });
+        setEmail("");
+      } else {
+        setIsInValid(true)
+      }
       Keyboard.dismiss();
     } else {
       setEmailError(true);
@@ -38,31 +51,36 @@ const ForgotPassword = () => {
   };
 
   return (
-      <View style={styles.container}>
-        <View style={styles.innerContainer}>
-          <Text style={styles.heading}>Forgot{"\n"}Password?</Text>
-          <Text style={styles.description}>
-            Don't worry! It happens. Please enter your email, we will send the
-            OTP on this email.
+    <View style={styles.container}>
+      <View style={styles.innerContainer}>
+        <Text style={styles.heading}>Forgot{"\n"}Password?</Text>
+        <Text style={styles.description}>
+          Don't worry! It happens. Please enter your email, we will send the OTP
+          on this email.
+        </Text>
+        {isInValid && (
+          <Text style={{ color: "red", textAlign: "center", marginBottom: 24 }}>
+            Email does'nt exist.
           </Text>
-          <TextInput
-            mode="outlined"
-            label="Enter your email"
-            value={email}
-            keyboardType="email-address"
-            onChangeText={setEmail}
-            outlineColor={emailError ? "red" : "rgba(50, 50, 50, 0.15)"}
-            activeOutlineColor={emailError ? "red" : "#1185BA"}
-            theme={theme}
-          />
-          <Pressable
-            android_ripple={{ color: "#519fc2" }}
-            onPress={handleSendCode}
-            style={styles.buttonContainer}>
-            <Text style={styles.button}> Login</Text>
-          </Pressable>
-        </View>
+        )}
+        <TextInput
+          mode="outlined"
+          label="Enter your email"
+          value={email}
+          keyboardType="email-address"
+          onChangeText={setEmail}
+          outlineColor={emailError ? "red" : "rgba(50, 50, 50, 0.15)"}
+          activeOutlineColor={emailError ? "red" : "#1185BA"}
+          theme={theme}
+        />
+        <Pressable
+          android_ripple={{ color: "#519fc2" }}
+          onPress={handleSendCode}
+          style={styles.buttonContainer}>
+          <Text style={styles.button}> Verify</Text>
+        </Pressable>
       </View>
+    </View>
   );
 };
 

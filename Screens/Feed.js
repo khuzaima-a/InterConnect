@@ -68,7 +68,7 @@ const Feed = props => {
             ? filteredRides
             : filteredRides.filter((ride) => ride.vehicle.type === selected)
         }
-        renderItem={({ item }) => <RideCard key={item.id} RideInfo={item} />}
+        renderItem={({ item }) => <RideCard key={item.id} RideInfo={item} navigation={props.navigation} />}
         keyExtractor={(item) => item.id.toString()}
       />
     </View>

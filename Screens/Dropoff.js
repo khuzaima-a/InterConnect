@@ -3,9 +3,17 @@ import React, { useState } from "react";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Searchbar } from "react-native-paper";
+import NextButton from "../Components/NextButton";
 
 const Dropoff = ({ navigation }) => {
   const [search, setSearch] = useState("");
+
+  const onNext = () => {
+    if (search === "") {
+      return;
+    }
+    navigation.navigate("DatePick");
+  };
 
   const insets = useSafeAreaInsets();
   return (
@@ -18,6 +26,7 @@ const Dropoff = ({ navigation }) => {
         ...styles.container,
       }}>
       <IonIcon
+        onPress={() => navigation.goBack()}
         name="arrow-back"
         size={30}
         color="#1185BA"
@@ -44,6 +53,7 @@ const Dropoff = ({ navigation }) => {
         onChangeText={(text) => setSearch(text)}
         value={search}
       />
+      <NextButton onPress={onNext} />
     </View>
   );
 };
@@ -54,7 +64,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "flex-start",
     marginTop: 30,
-  },
+  }
 });
 
 export default Dropoff;

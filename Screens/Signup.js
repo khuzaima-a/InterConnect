@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
 
-const Signup = () => {
+const Signup = ({ navigation }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,60 +55,59 @@ const Signup = () => {
   };
 
   return (
-      <View style={styles.signup}>
-        <View style={styles.ellipse}></View>
-        <Text style={styles.heading}>Create{"\n"}Account</Text>
+    <View style={styles.signup}>
+      <View style={styles.ellipse}></View>
+      <Text style={styles.heading}>Create{"\n"}Account</Text>
 
-        <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            mode="outlined"
-            label="Name"
-            value={name}
-            onChangeText={setName}
-            outlineColor={nameError ? "red" : "rgba(50, 50, 50, 0.15)"}
-            activeOutlineColor={nameError ? "red" : "#1185BA"}
-            theme={theme}
-            required
-          />
-          <TextInput
-            style={styles.input}
-            mode="outlined"
-            label="Email"
-            value={email}
-            onChangeText={setEmail}
-            outlineColor={emailError ? "red" : "rgba(50, 50, 50, 0.15)"}
-            activeOutlineColor={emailError ? "red" : "#1185BA"}
-            theme={theme}
-            keyboardType="email-address"
-          />
-          <TextInput
-            style={styles.input}
-            mode="outlined"
-            label="Password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-            outlineColor={passwordError ? "red" : "rgba(50, 50, 50, 0.15)"}
-            activeOutlineColor={passwordError ? "red" : "#1185BA"}
-            theme={theme}
-
-          />
-          <Pressable
-            android_ripple={{ color: "#519fc2" }}
-            onPress={handleSignup}
-            style={styles.buttonContainer}>
-            <Text style={styles.button}> Sign Up</Text>
-          </Pressable>
-        </View>
-
-        <View>
-          <Text style={styles.member}>Already a member?</Text>
-          <Pressable>
-            <Text style={styles.login}>Log in</Text>
-          </Pressable>
-        </View>
+      <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          mode="outlined"
+          label="Name"
+          value={name}
+          onChangeText={setName}
+          outlineColor={nameError ? "red" : "rgba(50, 50, 50, 0.15)"}
+          activeOutlineColor={nameError ? "red" : "#1185BA"}
+          theme={theme}
+          required
+        />
+        <TextInput
+          style={styles.input}
+          mode="outlined"
+          label="Email"
+          value={email}
+          onChangeText={setEmail}
+          outlineColor={emailError ? "red" : "rgba(50, 50, 50, 0.15)"}
+          activeOutlineColor={emailError ? "red" : "#1185BA"}
+          theme={theme}
+          keyboardType="email-address"
+        />
+        <TextInput
+          style={styles.input}
+          mode="outlined"
+          label="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          outlineColor={passwordError ? "red" : "rgba(50, 50, 50, 0.15)"}
+          activeOutlineColor={passwordError ? "red" : "#1185BA"}
+          theme={theme}
+        />
+        <Pressable
+          android_ripple={{ color: "#519fc2" }}
+          onPress={handleSignup}
+          style={styles.buttonContainer}>
+          <Text style={styles.button}> Sign Up</Text>
+        </Pressable>
       </View>
+
+      <View>
+        <Text style={styles.member}>Already a member?</Text>
+        <Pressable onPress={() => navigation.navigate("Login")}>
+          <Text style={styles.login}>Log in</Text>
+        </Pressable>
+      </View>
+    </View>
   );
 };
 
