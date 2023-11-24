@@ -25,7 +25,7 @@ const Profile = ({ navigation }) => {
   const insets = useSafeAreaInsets();
 
   const editProfile = () => {
-    console.log("Edit Profile");
+    navigation.navigate("EditProfile", { user });
     }
 
     const handleLogout = () => {

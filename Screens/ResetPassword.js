@@ -8,11 +8,13 @@ import {
   StyleSheet,
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
+import { useUsers } from '../Context/UserContext';
 
 const ResetPassword = ({ navigation, route }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null)
+  const { users, setUsers } = useUsers();
 
   const theme = {
     ...DefaultTheme,
@@ -24,7 +26,7 @@ const ResetPassword = ({ navigation, route }) => {
 
   const handleSubmit = () => {
     setError(null);
-  Keyboard.dismiss();
+    Keyboard.dismiss();
     if(password.length < 5) {
       setError("Password should be atleast 5 characters")
       return;
@@ -33,6 +35,18 @@ const ResetPassword = ({ navigation, route }) => {
       setError("Password and confirm password should be same")
       return;
     }
+
+    setUsers(users.map((user) => {
+      if(user.email === route.params?.email) {
+        return {
+          ...user,
+          password: password
+        }
+      }
+      else {
+        return user;
+      }
+    }))
 
     navigation.navigate("Login");
     setPassword("");
