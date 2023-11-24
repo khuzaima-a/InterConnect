@@ -23,7 +23,7 @@ function EditProfile({ navigation, route }) {
 
   const handleSubmit = () => {
           setAboutError(false);
-          if(about.length < 10 || about.length > 50) {
+          if(about.length < 10) {
                     setAboutError(true);
                     return;
           }
@@ -60,7 +60,7 @@ function EditProfile({ navigation, route }) {
       <Text style={styles.heading}>Edit Profile</Text>
       {
                         aboutError && (
-                                <Text style={{ color: "red", fontSize: 14, alignSelf: "center", marginBottom: 8 }}>About should be between 10 and 50 characters</Text>
+                                <Text style={{ color: "red", fontSize: 14, alignSelf: "center", marginBottom: 8 }}>About should be atleast 10 characters </Text>
                         )
       }
       <TextInput
