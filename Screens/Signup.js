@@ -87,6 +87,7 @@ const Signup = ({ navigation }) => {
           outlineColor={nameError ? "red" : "rgba(50, 50, 50, 0.15)"}
           activeOutlineColor={nameError ? "red" : "#1185BA"}
           theme={theme}
+          left={<TextInput.Icon icon="name" color="#1185BA" />}
           required
         />
         <TextInput

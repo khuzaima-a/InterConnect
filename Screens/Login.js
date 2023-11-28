@@ -84,6 +84,9 @@ const Login = ({ navigation }) => {
           outlineColor={emailError ? "red" : "rgba(50, 50, 50, 0.15)"}
           activeOutlineColor={emailError ? "red" : "#1185BA"}
           theme={theme}
+          left={
+            <TextInput.Icon icon="account" size={25} color={"rgb(80,80,80)"} />
+          }
         />
         <TextInput
           style={styles.input}
@@ -95,6 +98,12 @@ const Login = ({ navigation }) => {
           outlineColor={passwordError ? "red" : "rgba(50, 50, 50, 0.15)"}
           activeOutlineColor={passwordError ? "red" : "#1185BA"}
           theme={theme}
+          left={
+            <TextInput.Icon icon="lock" size={22} color={"rgb(80,80,80)"} />
+          }
+          right={
+            <TextInput.Icon icon="eye" size={20} color={"rgb(80,80,80)"} />
+          }
         />
 
         <Pressable onPress={() => navigation.navigate("ForgotPassword")}>
