@@ -1,8 +1,8 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import RideDetails from "../Screens/RideDetails";
-import Profile from "../Screens/Profile";
-import EditProfile from "../Screens/EditProfile";
+import RideDetails from "../Screens/Home/RideDetails";
+import Profile from "../Screens/Profile/Profile";
+import EditProfile from "../Screens/Profile/EditProfile";
 
 function ProfileStackScreen() {
   const ProfileStack = createStackNavigator();

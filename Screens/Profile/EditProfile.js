@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Fontisto";
-import { useUsers} from '../Context/UserContext';
+import { useUsers} from '../../Context/UserContext';
 
 function EditProfile({ navigation, route }) {
   const [about, setAbout] = useState(route.params?.user.about);

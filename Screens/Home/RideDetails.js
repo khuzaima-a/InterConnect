@@ -8,7 +8,7 @@ import {
   Image
 } from "react-native";
 import IonIcon from "react-native-vector-icons/Ionicons";
-import { useRides } from "../Context/RidesContext";
+import { useRides } from "../../Context/RidesContext";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RideDetails = ({ route, navigation }) => {

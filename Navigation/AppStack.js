@@ -5,8 +5,9 @@ import AntIcon from "react-native-vector-icons/AntDesign";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeStackScreen from "./HomeStackScreen";
-import ChatStackScreen from "./ChatStackScreen";
+import NotificationStackScreen from "./NotificationStackScreen";
 import PostStackScreen from "./PostStackScreen";
+import ChatStackScreen from "./ChatStackScreen";
 import ProfileStackScreen from "./ProfileStackScreen";
 
 const AppStack = () => {
@@ -35,6 +36,8 @@ const AppStack = () => {
             iconName = focused ? "chatbox-sharp" : "chatbox-outline";
           } else if (rn === "ProfileScreen") {
             iconName = focused ? "person" : "person-outline";
+          } else if (rn === "NotificationScreen") {
+            iconName = focused ? "notifications" : "notifications-outline";
           }
 
           return <Ionicons name={iconName} size={24} color={color} />;
@@ -52,6 +55,7 @@ const AppStack = () => {
         },
       })}>
       <Tab.Screen name="HomeScreen" component={HomeStackScreen} />
+      <Tab.Screen name="NotificationScreen" component={NotificationStackScreen} />
       <Tab.Screen name="PostScreen" component={PostStackScreen} />
       <Tab.Screen name="ChatScreen" component={ChatStackScreen} />
       <Tab.Screen name="ProfileScreen" component={ProfileStackScreen} />

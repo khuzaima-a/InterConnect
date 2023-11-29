@@ -4,7 +4,7 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import SearchCard from "../Components/SearchCard";
+import SearchCard from "../../Components/SearchCard";
 
 const FindRide = ({ navigation, route }) => {
           const screenWidth = Dimensions.get("window").width;
@@ -16,7 +16,7 @@ const FindRide = ({ navigation, route }) => {
             <View style={{flex: 1}}>
               <Image
                 style={{ width: screenWidth, height: screenHeight/2 }}
-                source={require("../assets/FindRide.jpeg")}
+                source={require("../../assets/FindRide.jpeg")}
               />
             <SearchCard navigation={navigation} data = {data} />
             </View>

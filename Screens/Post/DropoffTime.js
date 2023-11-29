@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import IonIcon from "react-native-vector-icons/Ionicons";
-import { TimePicker } from "react-native-simple-time-picker";
-import NextButton from "../Components/NextButton";
+import NextButton from "../../Components/NextButton";
+import TimePick from "../../Components/TimePick";
 
-const TimePick = ({ navigation, route }) => {
+const DropoffTime = ({ navigation, route }) => {
   const insets = useSafeAreaInsets();
+  const [date, setDate] = useState(new Date());
 
-  const [hours, setHours] = useState(0)
-  const [mints, setMints] = useState(0)
+  const onPress = () => {
+    const dropoffTime = date
+      .toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+      .slice(0, -3);
+  };
 
   return (
     <View
@@ -35,19 +42,10 @@ const TimePick = ({ navigation, route }) => {
           paddingLeft: 10,
           lineHeight: 40,
         }}>
-        At what time will you pick passengers up?
+        At what time will you reach the destination?
       </Text>
-      <View style={styles.calendar}>
-        <TimePicker
-          selectedHours={hours}
-          selectedMinutes={mints}
-          onChange={(hours, minutes) => {
-            setHours(hours);
-            setMints(minutes);
-          }}
-        />
-      </View>
-      <NextButton onPress={() => console.log("Pressed")}/>
+      <TimePick date={date} setDate={setDate} />
+      <NextButton onPress={onPress} />
     </View>
   );
 };
@@ -60,12 +58,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
     backgroundColor: "#fff",
   },
-  calendar: {
-    width: "90%",
-    alignSelf: "center",
-    marginTop: 18,
-  },
-
 });
 
-export default TimePick;
+export default DropoffTime;

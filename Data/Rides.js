@@ -68,7 +68,7 @@ const Rides = [
     arrivalTime: "09:00",
     vehicle: {
       name: "Honda 125",
-      color: "red",
+      color: "Red",
       type: "Bike",
       seats: 1,
     },

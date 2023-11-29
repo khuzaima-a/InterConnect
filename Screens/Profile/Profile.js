@@ -8,13 +8,13 @@ import {
   Pressable,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useUsers } from '../Context/UserContext'
-import { useRides } from "../Context/RidesContext";
+import { useUsers } from '../../Context/UserContext'
+import { useRides } from "../../Context/RidesContext";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import FAIcon from "react-native-vector-icons/FontAwesome5";
 import MIcon from "react-native-vector-icons/MaterialIcons";
-import RideCard from "../Components/RideCard";
-import { useAuth } from '../Context/AuthContext';
+import RideCard from "../../Components/RideCard";
+import { useAuth } from '../../Context/AuthContext';
 
 const Profile = ({ navigation }) => {
   const { rides } = useRides(); 

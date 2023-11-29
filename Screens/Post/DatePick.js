@@ -4,7 +4,7 @@ import DatePicker from "react-native-modern-datepicker";
 import { getFormatedDate } from "react-native-modern-datepicker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import IonIcon from "react-native-vector-icons/Ionicons";
-import NextButton from "../Components/NextButton";
+import NextButton from "../../Components/NextButton";
 
 const DatePick = ({ navigation, route }) => {
           const insets = useSafeAreaInsets();
@@ -17,7 +17,7 @@ const DatePick = ({ navigation, route }) => {
           const [date, setDate] = useState(startDate);
 
           const onNext = () => {
-            navigation.navigate('TimePick', { ...route.params, date });
+            navigation.navigate('PickupTime', { ...route.params, date });
           }
 
             return (

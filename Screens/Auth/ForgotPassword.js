@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
-import { useUsers } from '../Context/UserContext'
+import { useUsers } from '../../Context/UserContext'
 
 const ForgotPassword = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -71,6 +71,9 @@ const ForgotPassword = ({ navigation }) => {
           outlineColor={emailError ? "red" : "rgba(50, 50, 50, 0.15)"}
           activeOutlineColor={emailError ? "red" : "#1185BA"}
           theme={theme}
+          left={
+            <TextInput.Icon icon="email" size={21} color={"rgb(80,80,80)"} />
+          }
         />
         <Pressable
           android_ripple={{ color: "#519fc2" }}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Pressable, Keyboard, StyleSheet } from "react-native";
-import { useUsers } from "../Context/UserContext";
+import { useUsers } from "../../Context/UserContext";
 import { TextInput, DefaultTheme } from "react-native-paper";
 
 const Signup = ({ navigation }) => {
@@ -10,6 +10,7 @@ const Signup = ({ navigation }) => {
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { users, setUsers } = useUsers();
 
@@ -35,8 +36,8 @@ const Signup = ({ navigation }) => {
       name &&
       email &&
       password &&
-      validateEmail(email) && 
-      (password.length >= 5) &&
+      validateEmail(email) &&
+      password.length >= 5 &&
       name.length <= 15
     ) {
       const newUser = {
@@ -87,7 +88,9 @@ const Signup = ({ navigation }) => {
           outlineColor={nameError ? "red" : "rgba(50, 50, 50, 0.15)"}
           activeOutlineColor={nameError ? "red" : "#1185BA"}
           theme={theme}
-          left={<TextInput.Icon icon="name" color="#1185BA" />}
+          left={
+            <TextInput.Icon icon="account" size={25} color="rgb(80,80,80)" />
+          }
           required
         />
         <TextInput
@@ -100,6 +103,7 @@ const Signup = ({ navigation }) => {
           activeOutlineColor={emailError ? "red" : "#1185BA"}
           theme={theme}
           keyboardType="email-address"
+          left={<TextInput.Icon icon="email" size={21} color="rgb(80,80,80)" />}
         />
         <TextInput
           style={styles.input}
@@ -107,10 +111,19 @@ const Signup = ({ navigation }) => {
           label="Password"
           value={password}
           onChangeText={setPassword}
-          secureTextEntry
+          secureTextEntry={!showPassword}
           outlineColor={passwordError ? "red" : "rgba(50, 50, 50, 0.15)"}
           activeOutlineColor={passwordError ? "red" : "#1185BA"}
           theme={theme}
+          left={<TextInput.Icon icon="lock" size={22} color="rgb(80,80,80)" />}
+          right={
+            <TextInput.Icon
+              onPress={() => setShowPassword(!showPassword)}
+              icon={showPassword ? "eye-off" : "eye"}
+              size={20}
+              color="rgb(80,80,80)"
+            />
+          }
         />
         <Pressable
           android_ripple={{ color: "#519fc2" }}

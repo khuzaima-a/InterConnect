@@ -8,7 +8,7 @@ const Users = [
       "Passionate driver, ensuring safe and efficient rides. Your trusted transportation",
     dp: "https://avatars.githubusercontent.com/u/107122634?v=4",
     password: "123123",
-    rides: [],
+    rides: [2,4,5],
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const Users = [
       "Passionate driver, ensuring safe and efficient rides. Your trusted transportation",
     dp: null,
     password: "123123",
-    rides: [1, 3, 4, 5, 6],
+    rides: [1, 3, 6],
   },
 ];
 

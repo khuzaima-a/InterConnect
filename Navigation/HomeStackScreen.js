@@ -1,8 +1,8 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import FindRide from "../Screens/FindRide";
-import Feed from "../Screens/Feed";
-import RideDetails from "../Screens/RideDetails";
+import FindRide from "../Screens/Home/FindRide";
+import Feed from "../Screens/Home/Feed";
+import RideDetails from "../Screens/Home/RideDetails";
 
 function HomeStackScreen() {
   const HomeStack = createStackNavigator();

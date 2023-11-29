@@ -7,14 +7,15 @@ import {
   StyleSheet,
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
-import { useUsers } from '../Context/UserContext'
-import { useAuth } from "../Context/AuthContext";
+import { useUsers } from '../../Context/UserContext'
+import { useAuth } from "../../Context/AuthContext";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
    const [emailError, setEmailError] = useState(false);
    const [passwordError, setPasswordError] = useState(false);
+   const [showPassword, setShowPassword] = useState(false);
    const [isInvalid, setIsInvalid] = useState(false);
    const { login } = useAuth();
    const { users } = useUsers();
@@ -85,7 +86,7 @@ const Login = ({ navigation }) => {
           activeOutlineColor={emailError ? "red" : "#1185BA"}
           theme={theme}
           left={
-            <TextInput.Icon icon="account" size={25} color={"rgb(80,80,80)"} />
+            <TextInput.Icon icon="email" size={21} color={"rgb(80,80,80)"} />
           }
         />
         <TextInput
@@ -94,7 +95,7 @@ const Login = ({ navigation }) => {
           label="Password"
           value={password}
           onChangeText={setPassword}
-          secureTextEntry
+          secureTextEntry={!showPassword}
           outlineColor={passwordError ? "red" : "rgba(50, 50, 50, 0.15)"}
           activeOutlineColor={passwordError ? "red" : "#1185BA"}
           theme={theme}
@@ -102,7 +103,12 @@ const Login = ({ navigation }) => {
             <TextInput.Icon icon="lock" size={22} color={"rgb(80,80,80)"} />
           }
           right={
-            <TextInput.Icon icon="eye" size={20} color={"rgb(80,80,80)"} />
+            <TextInput.Icon
+              onPress={() => setShowPassword(!showPassword)}
+              icon={showPassword ? "eye-off" : "eye"}
+              size={20}
+              color="rgb(80,80,80)"
+            />
           }
         />
 

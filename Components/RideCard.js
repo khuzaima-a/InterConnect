@@ -72,13 +72,13 @@ const RideCard = ({ RideInfo, navigation }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "rgb(235, 235, 235)",
+    backgroundColor: "rgb(233, 233, 233)",
     flexDirection: "row",
     width: "87%",
     alignSelf: "center",
-    marginVertical: 16,
+    marginVertical: 10,
     borderRadius: 15,
-    elevation: 6,
+    elevation: 5,
   },
   driver: {
     justifyContent: "center",

@@ -8,11 +8,12 @@ import {
   StyleSheet,
 } from "react-native";
 import { TextInput, DefaultTheme } from "react-native-paper";
-import { useUsers } from '../Context/UserContext';
+import { useUsers } from '../../Context/UserContext';
 
 const ResetPassword = ({ navigation, route }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null)
   const { users, setUsers } = useUsers();
 
@@ -54,50 +55,63 @@ const ResetPassword = ({ navigation, route }) => {
   };
 
   return (
-      <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={require("../assets/ResetPassword.png")}
-        />
-        <Text style={styles.heading}>Set Your Password</Text>
-        <Text style={styles.description}>
-          In order to keep your account safe you need to create a strong
-          password
+    <View style={styles.container}>
+      <Image
+        style={styles.image}
+        source={require("../../assets/ResetPassword.png")}
+      />
+      <Text style={styles.heading}>Set Your Password</Text>
+      <Text style={styles.description}>
+        In order to keep your account safe you need to create a strong password
+      </Text>
+      {error && (
+        <Text style={{ color: "red", textAlign: "center", marginBottom: 16 }}>
+          {error}
         </Text>
-        { error && <Text style={{ color: "red", textAlign: "center", marginBottom: 16 }}>{error}</Text> }
-        <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            mode="outlined"
-            label="Password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-            outlineColor="rgba(50, 50, 50, 0.15)"
-            activeOutlineColor="#1185BA"
-            theme={theme}
-          />
+      )}
+      <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          mode="outlined"
+          label="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={!showPassword}
+          outlineColor="rgba(50, 50, 50, 0.15)"
+          activeOutlineColor="#1185BA"
+          theme={theme}
+          left={<TextInput.Icon icon="lock" size={22} color="rgb(80,80,80)" />}
+          right={
+            <TextInput.Icon
+              onPress={() => setShowPassword(!showPassword)}
+              icon={showPassword ? "eye-off" : "eye"}
+              size={20}
+              color="rgb(80,80,80)"
+            />
+          }
+        />
 
-          <TextInput
-            style={styles.input}
-            mode="outlined"
-            label="Confirm Password"
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-            secureTextEntry
-            outlineColor="rgba(50, 50, 50, 0.15)"
-            activeOutlineColor="#1185BA"
-            theme={theme}
-          />
+        <TextInput
+          style={styles.input}
+          mode="outlined"
+          label="Confirm Password"
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          secureTextEntry
+          outlineColor="rgba(50, 50, 50, 0.15)"
+          activeOutlineColor="#1185BA"
+          theme={theme}
+          left={<TextInput.Icon icon="lock" size={22} color="rgb(80,80,80)" />}
+        />
 
-          <Pressable
-            android_ripple={{ color: "#519fc2" }}
-            onPress={handleSubmit}
-            style={styles.buttonContainer}>
-            <Text style={styles.button}> Submit</Text>
-          </Pressable>
-        </View>
+        <Pressable
+          android_ripple={{ color: "#519fc2" }}
+          onPress={handleSubmit}
+          style={styles.buttonContainer}>
+          <Text style={styles.button}> Submit</Text>
+        </Pressable>
       </View>
+    </View>
   );
 };
 

@@ -11,8 +11,8 @@ import React, { useState } from "react";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Searchbar } from "react-native-paper";
-import NextButton from "../Components/NextButton";
-import citiesData from "../data";
+import NextButton from "../../Components/NextButton";
+import citiesData from "../../data";
 
 const Pickup = ({ navigation, route }) => {
   const [inputValue, setInputValue] = useState("");
@@ -23,7 +23,7 @@ const Pickup = ({ navigation, route }) => {
     if (inputValue === "") {
       return;
     }
-    navigation.navigate("DatePick", { ...route.param, inputValue });
+    navigation.navigate("DatePick", { ...route.params, inputValue });
   };
 
   const loadOptions = (text) => {
